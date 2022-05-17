@@ -1,9 +1,16 @@
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
-
+const heading = $('header h2')
+const cdThumb = $('.cd-thumb')
+const audio = $('#audio')
 const playList = $('.playlist')
+const cd = $('.cd')
+const player = $('.player')
+const playBtn = $('.btn-toggle-play')
 const app = {
+    currentIndex: 5,
+    isPlaying: false,
     songs: [
         {
           name: "Click Pow Get Down",
@@ -40,12 +47,11 @@ const app = {
             "https://a10.gaanacdn.com/images/albums/72/3019572/crop_480x480_3019572.jpg"
         },
         {
-          name: "Damn",
-          singer: "Raftaar x kr$na",
-          path:
-            "https://mp3.filmisongs.com/go.php?id=Damn%20Song%20Raftaar%20Ft%20KrSNa.mp3",
+          name: "Ghe Qua",
+          singer: "Tofu-Disk",
+          path: "../music/Ghe-Qua-Dick-Tofu-PC.mp3",
           image:
-            "https://filmisongs.xyz/wp-content/uploads/2020/07/Damn-Song-Raftaar-KrNa.jpg"
+            "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/a/e/b/8/aeb88408626df7aef9c92f89afbcc179.jpg"
         },
         {
           name: "Feeling You",
@@ -69,12 +75,58 @@ const app = {
         })
         playList.innerHTML = htmls.join('')
     },
-    handleEvert: {
+    handleEvents: function() {
+      const cdWidth = cd.offsetWidth
+      document.onscroll = function() {
+        const scrollTop = window.scrollTop || document.documentElement.scrollTop
+        const newWidth = cdWidth - scrollTop
+        
+        cd.style.width = newWidth > 0 ? newWidth + 'px' : 0
+        cd.style.opacity = newWidth / cdWidth
+      }
+    },
+    defineProperties: function () {
+      Object.defineProperty(this, 'currentSong', {
+        get: function () {
+          return this.songs[this.currentIndex]
+        }
+      })
+    },
+    loadCurrentSong : function() {
       
+      heading.textContent = this.currentSong.name
+      cdThumb.style.backgroundImage = `url(${this.currentSong.image})`
+      audio.src = this.currentSong.path
+      console.log(heading, cdThumb, audio)
+    },
+    togglePlay: function() {
+      playBtn.onclick = function() {
+        if (this.isPlaying === false) {
+          audio.play()
+          player.classList.add('playing')
+          this.isPlaying = !this.isPlaying
+        }
+        else {
+          audio.pause()
+          player.classList.remove('playing')
+          this.isPlaying = !this.isPlaying
+        }
+      }
     },
     start: function() {
-        this.render()
+      // define properties for app
+      this.defineProperties()
+      // handle changes events
+      this.handleEvents()
+
+      // load current Song
+      this.loadCurrentSong()
+
+      // handle when user click play button
+      this.togglePlay()
+      this.render()
     }
 
 }
 app.start()
+
