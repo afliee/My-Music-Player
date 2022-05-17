@@ -76,6 +76,7 @@ const app = {
         playList.innerHTML = htmls.join('')
     },
     handleEvents: function() {
+      const _this = this
       const cdWidth = cd.offsetWidth
       document.onscroll = function() {
         const scrollTop = window.scrollTop || document.documentElement.scrollTop
@@ -83,6 +84,18 @@ const app = {
         
         cd.style.width = newWidth > 0 ? newWidth + 'px' : 0
         cd.style.opacity = newWidth / cdWidth
+      },
+      playBtn.onclick = function() {
+        if (_this.isPlaying) {
+          audio.pause()
+          player.classList.remove('playing')
+          _this.isPlaying = !(_this.isPlaying)
+        }
+        else {
+          audio.play()
+          player.classList.add('playing')
+          _this.isPlaying = !(_this.isPlaying)
+        }
       }
     },
     defineProperties: function () {
@@ -99,31 +112,17 @@ const app = {
       audio.src = this.currentSong.path
       console.log(heading, cdThumb, audio)
     },
-    togglePlay: function() {
-      playBtn.onclick = function() {
-        if (this.isPlaying === false) {
-          audio.play()
-          player.classList.add('playing')
-          this.isPlaying = !this.isPlaying
-        }
-        else {
-          audio.pause()
-          player.classList.remove('playing')
-          this.isPlaying = !this.isPlaying
-        }
-      }
-    },
+    
     start: function() {
       // define properties for app
       this.defineProperties()
       // handle changes events
+      // handle when user click play button
       this.handleEvents()
 
       // load current Song
       this.loadCurrentSong()
 
-      // handle when user click play button
-      this.togglePlay()
       this.render()
     }
 
