@@ -41,7 +41,6 @@ html {
     width: 100%;
     max-width: 480px;
     border-bottom: 1px solid #ebebeb;
-    background-image: url(../img/wedding-background-music.jpg);
     background-size: cover;
 }
 
@@ -51,6 +50,10 @@ header {
     margin-bottom: 10px;
 }
 
+body {
+    background-image: url(../img/wedding-background-music.jpg);
+    background-size: cover;
+}
 header h4 {
     color: var(--primary-color);
     font-size: 12px;
@@ -118,8 +121,8 @@ header h4 {
 
 /* playlists */
 .playlist {
-    margin-top: 480px;
-    padding: 12px;
+    margin-top: 408px;
+    /* padding: 12px; */
 }
 
 
@@ -128,15 +131,19 @@ header h4 {
     height: 44px;
     background-size: cover;
     border-radius: 50%;
-    margin: 0 8px;
 }
 
 .song .body {
     flex: 1;
-    padding: 0 16px;
+    margin: 0 12px;
+    padding: 12px 0;
 }
 .song {
     display: flex;
     align-items: center;
-    
+    margin-top: 12px;
+    background-color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }

@@ -69,6 +69,9 @@ const app = {
         })
         playList.innerHTML = htmls.join('')
     },
+    handleEvert: {
+      
+    },
     start: function() {
         this.render()
     }
