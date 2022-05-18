@@ -17,7 +17,7 @@ const app = {
         {
           name: "Một Đêm Say",
           singer: "Thịnh Suy",
-          path: "https://mp3-s1-zmp3.zmdcdn.me/32d773f747b0aeeef7a1/6121980357253417684?authen=exp=1653012976~acl=/32d773f747b0aeeef7a1/*~hmac=dedeb5a54d82291cd984b821a2d4ba0a&fs=MTY1Mjg0MDE3NjA4OHx3ZWJWNnwxMDA5NjUwNjmUsIC3fDEwMS45OS4xMi4xNDQ",
+          path: "./assets/music/Ghe-Qua-Dick-Tofu-PC.mp3",
           image: "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/c/4/b/0/c4b0da67bae11731685f79432dc462b7.jpg"
         },
         {
