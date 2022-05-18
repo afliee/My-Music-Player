@@ -9,13 +9,13 @@ const cd = $('.cd')
 const player = $('.player')
 const playBtn = $('.btn-toggle-play')
 const app = {
-    currentIndex: 5,
+    currentIndex: 0,
     isPlaying: false,
     songs: [
         {
           name: "Click Pow Get Down",
           singer: "Raftaar x Fortnite",
-          path: "https://mp3.vlcmusic.com/download.php?track_id=34737&format=320",
+          path: "https://mp3-s1-zmp3.zmdcdn.me/32d773f747b0aeeef7a1/6121980357253417684?authen=exp=1653012976~acl=/32d773f747b0aeeef7a1/*~hmac=dedeb5a54d82291cd984b821a2d4ba0a&fs=MTY1Mjg0MDE3NjA4OHx3ZWJWNnwxMDA5NjUwNjmUsIC3fDEwMS45OS4xMi4xNDQ",
           image: "https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg"
         },
         {
@@ -49,7 +49,7 @@ const app = {
         {
           name: "Ghe Qua",
           singer: "Tofu-Disk",
-          path: "../music/Ghe-Qua-Dick-Tofu-PC.mp3",
+          path: "./assets/music/Ghe-Qua-Dick-Tofu-PC.mp3",
           image:
             "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/a/e/b/8/aeb88408626df7aef9c92f89afbcc179.jpg"
         },
@@ -61,6 +61,20 @@ const app = {
             "https://a10.gaanacdn.com/gn_img/albums/YoEWlabzXB/oEWlj5gYKz/size_xxl_1586752323.webp"
         },
     ],
+    defineProperties: function () {
+      Object.defineProperty(this, 'currentSong', {
+        get: function () {
+          return this.songs[this.currentIndex]
+        }
+      })
+    },
+    loadCurrentSong : function() {
+      
+      heading.textContent = this.currentSong.name
+      cdThumb.style.backgroundImage = `url(${this.currentSong.image})`
+      audio.src = this.currentSong.path
+      console.log(heading, cdThumb, audio)
+    },
     render: function() {
         const htmls= this.songs.map((song, index) => {
             return `
@@ -97,20 +111,6 @@ const app = {
           _this.isPlaying = !(_this.isPlaying)
         }
       }
-    },
-    defineProperties: function () {
-      Object.defineProperty(this, 'currentSong', {
-        get: function () {
-          return this.songs[this.currentIndex]
-        }
-      })
-    },
-    loadCurrentSong : function() {
-      
-      heading.textContent = this.currentSong.name
-      cdThumb.style.backgroundImage = `url(${this.currentSong.image})`
-      audio.src = this.currentSong.path
-      console.log(heading, cdThumb, audio)
     },
     
     start: function() {
