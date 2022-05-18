@@ -10,9 +10,12 @@ const player = $('.player')
 const playBtn = $('.btn-toggle-play')
 const nextBtn = $('.btn-next')
 const progress = $('#progress')
+const prevBtn = $('.btn-prev')
+const randomBtn = $('.btn-random')
 const app = {
     currentIndex: 0,
     isPlaying: false,
+    isRandom: false,
     songs: [
         {
           name: "ILOVEYOU2NE1",
@@ -44,7 +47,7 @@ const app = {
         {
           name: "Phi Hành Gia",
           singer: "Raftaar",
-          path: "https://mp3-s1-zmp3.zmdcdn.me/136884ef90ae79f020bf/1641773109473754030?authen=exp=1653030356~acl=/136884ef90ae79f020bf/*~hmac=557b01813ba71f01c8c54e8fe4932458&fs=MTY1Mjg1NzU1NjY2Mnx3ZWJWNnwwfDM2LjM3LjE3OS4xOTU",
+          path: "./assets/music/PhiHanhGia-RenjaSlowTLilWuynKainVietNamSugarCane-7093345.mp3",
           image:
             "https://photo-resize-zmp3.zmdcdn.me/w165_r1x1_jpeg/cover/8/6/d/6/86d68a321a1b7562b1bbf8e37642343a.jpg"
         },
@@ -58,9 +61,15 @@ const app = {
         {
           name: "Sao Cha Không",
           singer: "Phan Mạnh Quỳnh",
-          path: "https://mp3-s1-zmp3.zmdcdn.me/f24ae75bce1d27437e0c/2224528644319819820?authen=exp=1653031228~acl=/f24ae75bce1d27437e0c/*~hmac=5de3f5b6e3813c6db46dccccc751e67e&fs=MTY1Mjg1ODQyODY4NHx3ZWJWNnwxMDmUsICzNDmUsICwMzE0fDExNS43OC4yMTEdUngOTY",
+          path: "./assets/music/phan-manh-quynh-official-mv-ost-bo-gia-2021.mp3",
           image:
             "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/f/3/1/e/f31efb0da9bc984d7246866e6d529d78.jpg"
+        },
+        {
+          name: "Bật Chế Độ Bay Lên",
+          singer: "Bình Gold",
+          path: "./assets/music/BatCheDoBayLen-BinhGold-7199741.mp3",
+          image: "./assets/img/becuudangiu.png"
         },
     ],
     defineProperties: function () {
@@ -73,7 +82,7 @@ const app = {
     render: function() {
         const htmls= this.songs.map((song, index) => {
             return `
-            <div class="song">
+            <div class="song ${index === this.currentIndex ? "active" :""}">
                 <div class="thumb" style="background-image: url(${song.image})"></div>
                 <div class="body">
                     <h3 class="title">${song.name}</h3
@@ -125,15 +134,46 @@ const app = {
       }
 
       nextBtn.onclick = function() {
-        if (_this.currentIndex  !== _this.songs.length ) {
-          _this.loadCurrentSong()
-          audio.play()
-          _this.currentIndex++
+        if (_this.isRandom) {
+          _this.loadRandomSong()
         }else {
-          _this.currentIndex = 0
+          _this.nextSong()
         }
+        audio.play()
+        _this.render()
+        nextBtn.style.color = "var(--primary-color)"
+        setTimeout(function() {
+          nextBtn.style.color = ""
+        },150)
+        _this.scrollToActiveSong()
       }
 
+      prevBtn.onclick = function() {
+        if (_this.isRandom) {
+          _this.loadRandomSong()
+        }else {
+          _this.prevSong()
+        }
+        audio.play()
+        _this.render()
+        prevBtn.style.color = "var(--primary-color)"
+        setTimeout(function() {
+          prevBtn.style.color = ""
+        },150)
+        _this.scrollToActiveSong()
+      }
+
+      
+
+      randomBtn.onclick = function() {
+        if (_this.isRandom) {
+          randomBtn.classList.remove("active")
+          _this.isRandom = !(_this.isRandom)
+        }else {
+          randomBtn.classList.add("active")
+          _this.isRandom = !(_this.isRandom)
+        }
+      }
       audio.ontimeupdate = function() {
         if (audio.duration) {
           const progressPercent = Math.floor(audio.currentTime / audio.duration * 100)
@@ -149,12 +189,41 @@ const app = {
       }
 
     },
+    prevSong: function() {
+      this.currentIndex--
+      if (this.currentIndex < 0) {
+        this.currentIndex = this.songs.length -1
+      }
+      this.loadCurrentSong()
+    },
+    nextSong: function() {
+      this.currentIndex++
+      if (this.currentIndex >= this.songs.length) {
+        this.currentIndex = 0;
+      }
+      this.loadCurrentSong();
+    },
+    scrollToActiveSong: function () {
+      setTimeout(() => {
+        $(".song.active").scrollIntoView({
+          behavior: "smooth",
+          block: "nearest"
+        });
+      }, 300)
+    },
     loadCurrentSong : function() {
       heading.textContent = this.currentSong.name
       cdThumb.style.backgroundImage = `url(${this.currentSong.image})`
       audio.src = this.currentSong.path
     },
-    
+    loadRandomSong: function() {
+      let newIndex
+      do {
+        newIndex = Math.floor(Math.random() * this.songs.length)
+      }while (newIndex === this.songs.length)
+      this.currentIndex = newIndex
+      this.loadCurrentSong();
+    }, 
     start: function() {
       // define properties for app
       this.defineProperties()

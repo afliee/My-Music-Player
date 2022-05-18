@@ -48,7 +48,6 @@ html {
     border-bottom: 1px solid #ebebeb;
     background-size: cover;
     background-image: url(../img/wedding-background-music.jpg);
-
 }
 
 /* Header */
@@ -84,6 +83,13 @@ header h4 {
 }
 
 /* COntroller */
+.control .btn.active {
+    color: var(--primary-color);
+  }
+.song.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
 .control {
     display: flex;
     align-items: center;
@@ -94,7 +100,6 @@ header h4 {
 .control .btn {
     font-size:20px;
     padding: 18px;
-    font-size: 18px;
     color : #666;
 }
 
@@ -156,4 +161,12 @@ header h4 {
     padding: 8px 16px;
     border-radius: 5px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.song .body .title {
+    margin-bottom: 8px;
+}
+.song .body .author {
+    font-size: 12px;
+    text-transform: initial;
 }
