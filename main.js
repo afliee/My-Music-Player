@@ -15,15 +15,15 @@ const app = {
     isPlaying: false,
     songs: [
         {
-          name: "Một Đêm Say",
-          singer: "Thịnh Suy",
-          path: "./assets/music/Ghe-Qua-Dick-Tofu-PC.mp3",
+          name: "ILOVEYOU2NE1",
+          singer: "remix",
+          path: "./assets/music/i-love-u-2ne1-ft-boom-pi-seven-remix-nhac-hot-tik-tok-2022.mp3",
           image: "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/c/4/b/0/c4b0da67bae11731685f79432dc462b7.jpg"
         },
         {
           name: "Hôm Nay Tôi Buồn",
           singer: "Phùng Khánh Linh",
-          path: "https://mp3-s1-zmp3.zmdcdn.me/58c86f61b925507b0934/4061524407502532887?authen=exp=1653019987~acl=/58c86f61b925507b0934/*~hmac=5319838757ecce36d961da5bd9dabc2e&fs=MTY1Mjg0NzE4Nzg0MXx3ZWJWNnwxMDmUsICzNDmUsICwMzE0fDIyMi4yNTMdUngMTI1LjU3",
+          path: "./assets/music/HomNayToiBuon-PhungKhanhLinh-5383740.mp3",
           image:
             "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_png/covers/0/8/08193d6fe58d511c3cf519a0cc856c91_1517889125.png"
         },
@@ -31,13 +31,13 @@ const app = {
           name: "Đúng Người Đúng Thời Điểm",
           singer: "Thanh Hung",
           path:
-            "https://mp3-s1-zmp3.zmdcdn.me/14033a2d036aea34b37b/3492656630613786320?authen=exp=1653020218~acl=/14033a2d036aea34b37b/*~hmac=5f236e0acc171f449b52d97a288b3e59&fs=MTY1Mjg0NzQxODY4OHx3ZWJWNnwxMDQ4ODkyOTUwfDEdUngNTIdUngMjA3LjQ",
+            "./assets/music/DungNguoiDungThoiDiem8DAudio-ThanhHungIdol-6058059.mp3",
           image: "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/6/b/406b5324276ed23168cfc11822039372.jpg"
         },
         {
           name: "Anh Sẽ Đón Em",
           singer: "Nguyên, Trang",
-          path: "https://mp3-s1-zmp3.zmdcdn.me/9f622e4f2e0ec7509e1f/276231989067715127?authen=exp=1653020912~acl=/9f622e4f2e0ec7509e1f/*~hmac=4e4ea6fa998dbbc499bb10c8ff5dbfa4&fs=MTY1Mjg0ODExMjA0Mnx3ZWJWNnwwfDIyMi4yNTMdUngMTI1LjU3",
+          path: "./assets/music/AnhSeDonEmCukakRemix-NguyenTrang-7202625.mp3",
           image:
             "https://a10.gaanacdn.com/images/song/39/24225939/crop_480x480_1536749130.jpg"
         },
