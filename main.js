@@ -8,7 +8,7 @@ const playList = $('.playlist')
 const cd = $('.cd')
 const player = $('.player')
 const playBtn = $('.btn-toggle-play')
-const nextBtn = $('btn-next')
+const nextBtn = $('.btn-next')
 const app = {
     currentIndex: 0,
     isPlaying: false,
@@ -112,12 +112,18 @@ const app = {
         _this.isPlaying = false
         player.classList.remove('playing')
       }
+
+      nextBtn.onclick = function() {
+        _this.currentIndex++
+        _this.loadCurrentSong()
+        audio.play()
+        
+      }
     },
     loadCurrentSong : function() {
       heading.textContent = this.currentSong.name
       cdThumb.style.backgroundImage = `url(${this.currentSong.image})`
       audio.src = this.currentSong.path
-      console.log(heading, cdThumb, audio)
     },
     
     start: function() {
@@ -126,7 +132,6 @@ const app = {
       // handle changes events
       // handle when user click play button
       this.handleEvents()
-
       // load current Song
       this.loadCurrentSong()
 
