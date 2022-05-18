@@ -121,11 +121,13 @@ header h4 {
 }
 
 .progress::-webkit-slider-thumb {
-    -wedkit-appearance: none;
-    appearance: noane;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 8px;
     background-color: var(--primary-color);
     cursor: pointer;
-}
+  }
 
 /* playlists */
 .playlist {
