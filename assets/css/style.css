@@ -17,10 +17,15 @@ html {
     box-sizing: border-box;
 }
 
+#main {
+    /* background-image: url(../img/wedding-background-music.jpg);
+    background-size: cover; */
+}
 .player {
     position: relative;
     max-width: 480px;
     margin: 0 auto;
+    
 }
 .player .icon-pause {
     display: none;
@@ -42,6 +47,8 @@ html {
     max-width: 480px;
     border-bottom: 1px solid #ebebeb;
     background-size: cover;
+    background-image: url(../img/wedding-background-music.jpg);
+
 }
 
 /* Header */
@@ -50,10 +57,10 @@ header {
     margin-bottom: 10px;
 }
 
-body {
-    background-image: url(../img/wedding-background-music.jpg);
-    background-size: cover;
-}
+/* body {
+    /* background-image: url(../img/wedding-background-music.jpg); */
+    /* background-size: cover; */
+/* } */ 
 header h4 {
     color: var(--primary-color);
     font-size: 12px;
@@ -72,6 +79,8 @@ header h4 {
     border-radius: 50%;
     background-color:#333;
     background-size: cover;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.6);
 }
 
 /* COntroller */
