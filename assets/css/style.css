@@ -86,10 +86,7 @@ header h4 {
 .control .btn.active {
     color: var(--primary-color);
   }
-.song.active {
-    background-color: var(--primary-color);
-    color: #fff;
-}
+
 .control {
     display: flex;
     align-items: center;
@@ -139,8 +136,11 @@ header h4 {
     margin-top: 408px;
     /* padding: 12px; */
 }
-
-
+.control.active,
+.song.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
 .song .thumb {
     width: 44px;
     height: 44px;
