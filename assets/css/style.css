@@ -17,10 +17,7 @@ html {
     box-sizing: border-box;
 }
 
-#main {
-    /* background-image: url(../img/wedding-background-music.jpg);
-    background-size: cover; */
-}
+
 .player {
     position: relative;
     max-width: 480px;

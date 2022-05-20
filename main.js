@@ -1,5 +1,6 @@
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
+const PLAYER_STORAGE_KEY = "BUILD BY KUNZ"
 
 const heading = $('header h2')
 const cdThumb = $('.cd-thumb')
@@ -18,6 +19,7 @@ const app = {
     isPlaying: false,
     isRandom: false,
     isRepeat: false,
+    config : JSON.parse(localStorage.getItem(PLAYER_STORAGE_KEY)) || {},
     songs: [
         {
           name: "ILOVEYOU2NE1",
@@ -74,6 +76,10 @@ const app = {
           image: "./assets/img/becuudangiu.png"
         },
     ],
+    setConfig: function(key, value) {
+      this.config[key] = value;
+      localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(this.config));
+    },
     defineProperties: function () {
       Object.defineProperty(this, 'currentSong', {
         get: function () {
@@ -98,6 +104,7 @@ const app = {
     handleEvents: function() {
       const _this = this
       const cdWidth = cd.offsetWidth
+      // zoom in and out cd thumb nail
       document.onscroll = function() {
         const scrollTop = window.scrollTop || document.documentElement.scrollTop
         const newWidth = cdWidth - scrollTop
@@ -106,6 +113,7 @@ const app = {
         cd.style.opacity = newWidth / cdWidth
       }
 
+      // animate cd thumb rotate
       const cdThumbAnimate = cdThumb.animate([
         {transform:'rotate(360deg)'}
       ], {
@@ -113,6 +121,7 @@ const app = {
         iterations: Infinity
       })
       cdThumbAnimate.pause()
+
       // play music when click button is clicked
       playBtn.onclick = function() {
         if (_this.isPlaying) {
@@ -122,19 +131,20 @@ const app = {
           audio.play()
         }
       }
-
+      // when music play
       audio.onplay = function() {
         _this.isPlaying = true
         player.classList.add('playing')
         cdThumbAnimate.play()
       }
-
+      // when music pause
       audio.onpause = function() {
         _this.isPlaying = false
         player.classList.remove('playing')
         cdThumbAnimate.pause()
       }
 
+      // when user click next button
       nextBtn.onclick = function() {
         if (_this.isRandom) {
           _this.loadRandomSong()
@@ -150,6 +160,7 @@ const app = {
         _this.scrollToActiveSong()
       }
 
+      // when user click prevous button
       prevBtn.onclick = function() {
         if (_this.isRandom) {
           _this.loadRandomSong()
@@ -165,31 +176,41 @@ const app = {
         _this.scrollToActiveSong()
       }
 
+      // when user click random button
       randomBtn.onclick = function() {
-        if (_this.isRandom) {
-          randomBtn.classList.remove("active")
-          _this.isRandom = !(_this.isRandom)
+        _this.isRandom = !(_this.isRandom)
+        _this.setConfig('isRandom', _this.isRandom)
+        randomBtn.classList.toggle('active', _this.isRandom)
+      }
+
+      // when user click repeat button
+      repeatBtn.onclick = function() {
+        _this.isRepeat = !_this.isRepeat
+        _this.setConfig('isRepeat', _this.isRepeat)
+        repeatBtn.classList.toggle('active', _this.isRepeat)
+        _this.loadCurrentSong()
+
+      }
+
+      // when ended a music is playing
+      audio.onended = function() {
+        if(_this.isRepeat) {
+          audio.play()
         }else {
-          randomBtn.classList.add("active")
-          _this.isRandom = !(_this.isRandom)
+          nextBtn.click()
+          audio.play()
         }
       }
 
-      repeatBtn.onclick = function() {
-        _this.isRepeat = !_this.isRepeat
-        repeatBtn.classList.toggle('active', _this.isRepeat)
-      }
-
+      // update time when user click into progress
       audio.ontimeupdate = function() {
         if (audio.duration) {
           const progressPercent = Math.floor(audio.currentTime / audio.duration * 100)
           progress.value = progressPercent
-          if (progressPercent === 100) {
-            nextBtn.click()
-          }
         }
       }
 
+      
       progress.onchange = function(e) {
         if (audio.duration){
           audio.currentTime = e.target.value /100 * audio.duration
@@ -206,7 +227,7 @@ const app = {
             _this.loadCurrentSong()
             _this.render()
             audio.play()
-
+            _this.setConfig('currentIndex', _this.currentIndex)
           }
         }
       }
@@ -247,7 +268,13 @@ const app = {
       this.currentIndex = newIndex
       this.loadCurrentSong();
     }, 
+    loadConfig :function() {
+      this.isRandom = this.config.isRandom
+      this.isRepeat = this.config.isRepeat
+      this.currentIndex = this.config.currentIndex
+    },
     start: function() {
+      this.loadConfig()
       // define properties for app
       this.defineProperties()
       // handle changes events
@@ -257,6 +284,9 @@ const app = {
       this.loadCurrentSong()
 
       this.render()
+      repeatBtn.classList.toggle('active', this.isRepeat)
+      randomBtn.classList.toggle('active', this.isRandom)
+      this.loadCurrentSong()
     }
 
 }
