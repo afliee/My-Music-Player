@@ -81,11 +81,11 @@ const app = {
       localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(this.config));
     },
     defineProperties: function () {
-      Object.defineProperty(this, 'currentSong', {
+      Object.defineProperty(this, "currentSong", {
         get: function () {
-          return this.songs[this.currentIndex]
+          return this.songs[this.currentIndex];
         }
-      })
+      });
     },
     render: function() {
         const htmls= this.songs.map((song, index) => {
