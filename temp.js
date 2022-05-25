@@ -20,64 +20,68 @@ const repeatBtn = $(".btn-repeat");
 const playlist = $(".playlist");
 
 const app = {
-  currentIndex: 0,
+  currentIndex: 1,
   isPlaying: false,
   isRandom: false,
   isRepeat: false,
   config: {},
-  // (1/2) Uncomment the line below to use localStorage
-  // config: JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) || {},
+  config: JSON.parse(localStorage.getItem(PlAYER_STORAGE_KEY)) || {},
   songs: [
-    {
-      name: "Click Pow Get Down",
-      singer: "Raftaar x Fortnite",
-      path: "https://mp3.vlcmusic.com/download.php?track_id=34737&format=320",
-      image: "https://i.ytimg.com/vi/jTLhQf5KJSc/maxresdefault.jpg"
-    },
-    {
-      name: "Tu Phir Se Aana",
-      singer: "Raftaar x Salim Merchant x Karma",
-      path: "https://mp3.vlcmusic.com/download.php?track_id=34213&format=320",
-      image:
-        "https://1.bp.blogspot.com/-kX21dGUuTdM/X85ij1SBeEI/AAAAAAAAKK4/feboCtDKkls19cZw3glZWRdJ6J8alCm-gCNcBGAsYHQ/s16000/Tu%2BAana%2BPhir%2BSe%2BRap%2BSong%2BLyrics%2BBy%2BRaftaar.jpg"
-    },
-    {
-      name: "Naachne Ka Shaunq",
-      singer: "Raftaar x Brobha V",
-      path:
-        "https://mp3.filmysongs.in/download.php?id=Naachne Ka Shaunq Raftaar Ft Brodha V Mp3 Hindi Song Filmysongs.co.mp3",
-      image: "https://i.ytimg.com/vi/QvswgfLDuPg/maxresdefault.jpg"
-    },
-    {
-      name: "Mantoiyat",
-      singer: "Raftaar x Nawazuddin Siddiqui",
-      path: "https://mp3.vlcmusic.com/download.php?track_id=14448&format=320",
-      image:
-        "https://a10.gaanacdn.com/images/song/39/24225939/crop_480x480_1536749130.jpg"
-    },
-    {
-      name: "Aage Chal",
-      singer: "Raftaar",
-      path: "https://mp3.vlcmusic.com/download.php?track_id=25791&format=320",
-      image:
-        "https://a10.gaanacdn.com/images/albums/72/3019572/crop_480x480_3019572.jpg"
-    },
-    {
-      name: "Damn",
-      singer: "Raftaar x kr$na",
-      path:
-        "https://mp3.filmisongs.com/go.php?id=Damn%20Song%20Raftaar%20Ft%20KrSNa.mp3",
-      image:
-        "https://filmisongs.xyz/wp-content/uploads/2020/07/Damn-Song-Raftaar-KrNa.jpg"
-    },
-    {
-      name: "Feeling You",
-      singer: "Raftaar x Harjas",
-      path: "https://mp3.vlcmusic.com/download.php?track_id=27145&format=320",
-      image:
-        "https://a10.gaanacdn.com/gn_img/albums/YoEWlabzXB/oEWlj5gYKz/size_xxl_1586752323.webp"
-    }
-  ],
+        {
+          name: "ILOVEYOU2NE1",
+          singer: "remix",
+          path: "./assets/music/i-love-u-2ne1-ft-boom-pi-seven-remix-nhac-hot-tik-tok-2022.mp3",
+          image: "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/c/4/b/0/c4b0da67bae11731685f79432dc462b7.jpg"
+        },
+        {
+          name: "Hôm Nay Tôi Buồn",
+          singer: "Phùng Khánh Linh",
+          path: "./assets/music/HomNayToiBuon-PhungKhanhLinh-5383740.mp3",
+          image:
+            "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_png/covers/0/8/08193d6fe58d511c3cf519a0cc856c91_1517889125.png"
+        },
+        {
+          name: "Đúng Người Đúng Thời Điểm",
+          singer: "Thanh Hung",
+          path:
+            "./assets/music/DungNguoiDungThoiDiem8DAudio-ThanhHungIdol-6058059.mp3",
+          image: "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/4/0/6/b/406b5324276ed23168cfc11822039372.jpg"
+        },
+        {
+          name: "Anh Sẽ Đón Em",
+          singer: "Nguyên, Trang",
+          path: "./assets/music/AnhSeDonEmCukakRemix-NguyenTrang-7202625.mp3",
+          image:
+            "https://a10.gaanacdn.com/images/song/39/24225939/crop_480x480_1536749130.jpg"
+        },
+        {
+          name: "Phi Hành Gia",
+          singer: "Raftaar",
+          path: "./assets/music/PhiHanhGia-RenjaSlowTLilWuynKainVietNamSugarCane-7093345.mp3",
+          image:
+            "https://photo-resize-zmp3.zmdcdn.me/w165_r1x1_jpeg/cover/8/6/d/6/86d68a321a1b7562b1bbf8e37642343a.jpg"
+        },
+        {
+          name: "Ghe Qua",
+          singer: "Tofu-Disk",
+          path: "./assets/music/Ghe-Qua-Dick-Tofu-PC.mp3",
+          image:
+            "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/a/e/b/8/aeb88408626df7aef9c92f89afbcc179.jpg"
+        },
+        {
+          name: "Sao Cha Không",
+          singer: "Phan Mạnh Quỳnh",
+          path: "./assets/music/phan-manh-quynh-official-mv-ost-bo-gia-2021.mp3",
+          image:
+            "https://photo-resize-zmp3.zmdcdn.me/w240_r1x1_webp/cover/f/3/1/e/f31efb0da9bc984d7246866e6d529d78.jpg"
+        },
+        {
+          name: "Bật Chế Độ Bay Lên",
+          singer: "Bình Gold",
+          path: "./assets/music/BatCheDoBayLen-BinhGold-7199741.mp3",
+          image: "./assets/img/becuudangiu.png"
+        },
+    ],
   setConfig: function (key, value) {
     this.config[key] = value;
     // (2/2) Uncomment the line below to use localStorage
@@ -117,14 +121,15 @@ const app = {
 
     // Xử lý CD quay / dừng
     // Handle CD spins / stops
-    const cdThumbAnimate = cdThumb.animate([{ transform: "rotate(360deg)" }], {
+    const cdThumbAnimate = cdThumb.animate([{ 
+      transform: "rotate(360deg)" 
+    }], {
       duration: 10000, // 10 seconds
       iterations: Infinity
     });
     cdThumbAnimate.pause();
 
     // Xử lý phóng to / thu nhỏ CD
-    // Handles CD enlargement / reduction
     document.onscroll = function () {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const newCdWidth = cdWidth - scrollTop;
@@ -134,7 +139,6 @@ const app = {
     };
 
     // Xử lý khi click play
-    // Handle when click play
     playBtn.onclick = function () {
       if (_this.isPlaying) {
         audio.pause();
@@ -144,7 +148,6 @@ const app = {
     };
 
     // Khi song được play
-    // When the song is played
     audio.onplay = function () {
       _this.isPlaying = true;
       player.classList.add("playing");
@@ -152,7 +155,6 @@ const app = {
     };
 
     // Khi song bị pause
-    // When the song is pause
     audio.onpause = function () {
       _this.isPlaying = false;
       player.classList.remove("playing");
@@ -160,7 +162,6 @@ const app = {
     };
 
     // Khi tiến độ bài hát thay đổi
-    // When the song progress changes
     audio.ontimeupdate = function () {
       if (audio.duration) {
         const progressPercent = Math.floor(
@@ -171,14 +172,12 @@ const app = {
     };
 
     // Xử lý khi tua song
-    // Handling when seek
     progress.onchange = function (e) {
       const seekTime = (audio.duration / 100) * e.target.value;
       audio.currentTime = seekTime;
     };
 
     // Khi next song
-    // When next song
     nextBtn.onclick = function () {
       if (_this.isRandom) {
         _this.playRandomSong();
@@ -204,7 +203,6 @@ const app = {
     };
 
     // Xử lý bật / tắt random song
-    // Handling on / off random song
     randomBtn.onclick = function (e) {
       _this.isRandom = !_this.isRandom;
       _this.setConfig("isRandom", _this.isRandom);
@@ -212,7 +210,6 @@ const app = {
     };
 
     // Xử lý lặp lại một song
-    // Single-parallel repeat processing
     repeatBtn.onclick = function (e) {
       _this.isRepeat = !_this.isRepeat;
       _this.setConfig("isRepeat", _this.isRepeat);
@@ -220,7 +217,6 @@ const app = {
     };
 
     // Xử lý next song khi audio ended
-    // Handle next song when audio ended
     audio.onended = function () {
       if (_this.isRepeat) {
         audio.play();
@@ -230,7 +226,6 @@ const app = {
     };
 
     // Lắng nghe hành vi click vào playlist
-    // Listen to playlist clicks
     playlist.onclick = function (e) {
       const songNode = e.target.closest(".song:not(.active)");
 
@@ -245,7 +240,6 @@ const app = {
         }
 
         // Xử lý khi click vào song option
-        // Handle when clicking on the song option
         if (e.target.closest(".option")) {
         }
       }
@@ -293,26 +287,21 @@ const app = {
   },
   start: function () {
     // Gán cấu hình từ config vào ứng dụng
-    // Assign configuration from config to application
     this.loadConfig();
 
     // Định nghĩa các thuộc tính cho object
-    // Defines properties for the object
     this.defineProperties();
 
     // Lắng nghe / xử lý các sự kiện (DOM events)
-    // Listening / handling events (DOM events)
     this.handleEvents();
 
     // Tải thông tin bài hát đầu tiên vào UI khi chạy ứng dụng
-    // Load the first song information into the UI when running the app
     this.loadCurrentSong();
 
     // Render playlist
     this.render();
 
     // Hiển thị trạng thái ban đầu của button repeat & random
-    // Display the initial state of the repeat & random button
     randomBtn.classList.toggle("active", this.isRandom);
     repeatBtn.classList.toggle("active", this.isRepeat);
   }
